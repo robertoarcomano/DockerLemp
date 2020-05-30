@@ -8,12 +8,5 @@ git clone https://github.com/robertoarcomano/DockerLemp.git /tmp/DockerLemp
 docker rmi -f dockerlemp
 docker build -t dockerlemp /tmp/DockerLemp
 
-# 3. Create the container from the image
-docker rm -f dockerlemp
-docker create -p 81:80 --name "dockerlemp" dockerlemp
-
-# 4. Start the container
-docker start dockerlemp
-
-# 5. Delete /tmp/Dockerfile
+# 3. Delete /tmp/Dockerfile
 rm -rf /tmp/DockerLemp
