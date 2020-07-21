@@ -11,7 +11,7 @@ docker rmi -f $FULL_IMAGE
 docker build -t $FULL_IMAGE /tmp/DockerLemp
 
 # 3. Create the container from the image
-docker rm -f $FULL_IMAGE
+docker rm -f $IMAGE
 docker create -p 81:80 --name "$IMAGE" $FULL_IMAGE
 
 # 4. Start the container
