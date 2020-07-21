@@ -15,7 +15,7 @@ docker rm -f $FULL_IMAGE
 docker create -p 81:80 --name "$IMAGE" $FULL_IMAGE
 
 # 4. Start the container
-docker start $FULL_IMAGE
+docker start $IMAGE
 
 # 5. Delete /tmp/Dockerfile
 rm -rf /tmp/DockerLemp
