@@ -18,11 +18,8 @@ ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
 EXPOSE 22
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY supervisord_web.conf /etc/supervisor/conf.d/supervisord.conf
 COPY index.php /var/www/html/index.php
 COPY default /etc/nginx/sites-available/default
-
-COPY db.sql /tmp/db.sql
-RUN service mysql start && mysql < /tmp/db.sql
 
 CMD ["/usr/bin/supervisord"]
