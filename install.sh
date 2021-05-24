@@ -19,8 +19,8 @@ docker build -t $FULL_IMAGE_DB -f $TMP_DIR/Dockerfile_db $TMP_DIR
 # 3. Create the container from the image
 docker rm -f $FULL_IMAGE_WEB
 docker rm -f $FULL_IMAGE_DB
-docker create -p 81:80 --name "$IMAGE" $FULL_IMAGE_WEB
-docker create -p 3307:3306 --name "$IMAGE" $FULL_IMAGE_DB
+docker create -p 81:80 --name "$IMAGE_WEB" $FULL_IMAGE_WEB
+docker create -p 3307:3306 --name "$IMAGE_DB" $FULL_IMAGE_DB
 
 # 4. Start the container
 docker start $FULL_IMAGE_WEB
