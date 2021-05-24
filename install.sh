@@ -13,8 +13,8 @@ git clone -b $BRANCH https://github.com/robertoarcomano/DockerLemp.git $TMP_DIR
 # 2. Download Dockerfile_web and create image
 docker rmi -f $IMAGE_WEB
 docker rmi -f $IMAGE_DB
-docker build -t $FULL_IMAGE_WEB -f /tmp/DockerLemp/Dockerfile_web $TMP_DIR
-docker build -t $FULL_IMAGE_DB -f /tmp/DockerLemp/Dockerfile_db $TMP_DIR
+docker build -t $FULL_IMAGE_WEB -f $TMP_DIR/Dockerfile_web $TMP_DIR
+docker build -t $FULL_IMAGE_DB -f $TMP_DIR/Dockerfile_db $TMP_DIR
 
 # 3. Create the container from the image
 docker rm -f $FULL_IMAGE_WEB
