@@ -23,8 +23,8 @@ docker create -p 81:80 --name "$IMAGE_WEB" $FULL_IMAGE_WEB
 docker create -p 3307:3306 --name "$IMAGE_DB" $FULL_IMAGE_DB
 
 # 4. Start the container
-docker start $FULL_IMAGE_WEB
-docker start $FULL_IMAGE_DB
+docker start $IMAGE_WEB
+docker start $IMAGE_DB
 
 # 5. Delete /tmp/Dockerfile_web
 rm -rf $TMP_DIR
