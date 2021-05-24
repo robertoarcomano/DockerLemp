@@ -11,6 +11,9 @@ RUN echo 'root:root' | chpasswd
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
 
+# PHP Export variable for the DB Server
+echo "env[DOCKERLEMPDB_SERVICE_HOST] = \$DOCKERLEMPDB_SERVICE_HOST" >> /etc/php/7.4/fpm/pool.d/www.conf
+
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
