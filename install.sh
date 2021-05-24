@@ -1,21 +1,29 @@
 #!/bin/bash
 # Script to Create a Container for LEMP, using Docker
-IMAGE=dockerlemp
-FULL_IMAGE=robertoarcomano/$IMAGE
+BRANCH=loadbalancing
+IMAGE_WEB=dockerlemp_web
+IMAGE_DB=dockerlemp_db
+FULL_IMAGE_WEB=robertoarcomano/$IMAGE_WEB
+FULL_IMAGE_DB=robertoarcomano/$IMAGE_DB
 
 # 1. Download git repository
-git clone https://github.com/robertoarcomano/DockerLemp.git /tmp/DockerLemp
+git clone -b $BRANCH https://github.com/robertoarcomano/DockerLemp.git /tmp/DockerLemp
 
 # 2. Download Dockerfile_web and create image
-docker rmi -f $FULL_IMAGE
-docker build -t $FULL_IMAGE /tmp/DockerLemp
+docker rmi -f $WEB_IMAGE
+docker rmi -f $DB_IMAGE
+docker build -t $WEB_IMAGE -f /tmp/DockerLemp/Dockerfile_web
+docker build -t $DB_IMAGE -f /tmp/DockerLemp/Dockerfile_db
 
 # 3. Create the container from the image
-docker rm -f $IMAGE
-docker create -p 81:80 --name "$IMAGE" $FULL_IMAGE
+docker rm -f $FULL_IMAGE_WEB
+docker rm -f $FULL_IMAGE_DB
+docker create -p 81:80 --name "$IMAGE" $FULL_IMAGE_WEB
+docker create -p 3307:3306 --name "$IMAGE" $FULL_IMAGE_DB
 
 # 4. Start the container
-docker start $IMAGE
+docker start $FULL_IMAGE_WEB
+docker start $FULL_IMAGE_DB
 
 # 5. Delete /tmp/Dockerfile_web
 rm -rf /tmp/DockerLemp
