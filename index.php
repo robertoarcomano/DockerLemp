@@ -1,7 +1,7 @@
 <?php 
 echo gethostname();
 $dbhost = getenv("DOCKERLEMPDB_SERVICE_HOST");
-$db = new mysqli($dbhost,"root","","lemp");
+$db = new mysqli($dbhost, "root", "", "lemp");
 if ($db->connect_error) {
         die("Connection failed: " . $db->connect_error);
 }
