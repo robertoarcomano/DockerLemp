@@ -5,6 +5,7 @@ $db = new mysqli($dbhost, "root", "", "lemp");
 if ($db->connect_error) {
         die("Connection failed: " . $db->connect_error);
 }
+$db->query("START TRANSACTION");
 $db->query("delete from users");
 for ($i = 0; $i < 10; $i++)
         $result = $db->query("insert into users(name) values('User $i')");
@@ -18,5 +19,8 @@ while ($result->num_rows > 0 && $record = $result->fetch_assoc()) {
         $name = $record['name'];
 ?>
   <tr> <td><?=$id?></td> <td><?=$name?></td> </tr>
-<?php } ?>
+<?php
+}
+$db->query("COMMIT");
+?>
 </table>
