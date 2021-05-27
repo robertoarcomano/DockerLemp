@@ -22,6 +22,7 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 
 EXPOSE 22
 COPY supervisord_web.conf /etc/supervisor/conf.d/supervisord.conf
+COPY launchphp.sh /bin
 COPY index.php /var/www/html/index.php
 COPY default /etc/nginx/sites-available/default
 
