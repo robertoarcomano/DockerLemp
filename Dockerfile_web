@@ -13,8 +13,6 @@ RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/
 
 # PHP Export variable for the DB Server
 RUN echo "env[DOCKERLEMPDB_SERVICE_HOST] = \$DOCKERLEMPDB_SERVICE_HOST" >> /etc/php/7.4/fpm/pool.d/www.conf
-# Debug
-RUN echo "FF=/tmp/value; date > \$FF;echo \$DOCKERLEMPDB_SERVICE_HOST >> \$FF; date >> \$FF" >> /lib/init/vars.sh
 
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
